@@ -1,0 +1,18 @@
+{
+  "id": "caresuper",
+  "name": "CareSuper Innovation Workshop",
+  "description": "Automation opportunity discovery for CareSuper staff",
+  "customer": "CareSuper",
+  "created_at": "2024-01-01T00:00:00Z",
+  "workshop_date": "2024-02-01T09:00:00Z",
+  "facilitators": ["EE Team"],
+  "status": "active",
+  "themes": [
+    "Workflow Friction",
+    "Member Experience",
+    "Decision Support",
+    "Future Vision"
+  ],
+  "expected_participants": 50,
+  "duration_hours": 8
+}

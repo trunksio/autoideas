@@ -1,0 +1,66 @@
+{
+  "default_template": {
+    "type": "sticky_note",
+    "shape": "square",
+    "size": {"width": 200, "height": 200},
+    "style": {
+      "fontSize": 14,
+      "fontFamily": "OpenSans",
+      "textAlign": "center",
+      "textAlignVertical": "middle",
+      "bold": false
+    }
+  },
+  "category_styles": {
+    "workflow_friction": {
+      "color": "#FFE5E5",
+      "borderColor": "#FF6B6B",
+      "textColor": "#333333",
+      "icon": "⚙️"
+    },
+    "member_experience": {
+      "color": "#E5F9F6",
+      "borderColor": "#4ECDC4",
+      "textColor": "#333333",
+      "icon": "👥"
+    },
+    "decision_support": {
+      "color": "#E5F4F7",
+      "borderColor": "#45B7D1",
+      "textColor": "#333333",
+      "icon": "📊"
+    },
+    "wishlist": {
+      "color": "#EDF6EA",
+      "borderColor": "#96CEB4",
+      "textColor": "#333333",
+      "icon": "✨"
+    },
+    "general": {
+      "color": "#F5F5F5",
+      "borderColor": "#CCCCCC",
+      "textColor": "#333333",
+      "icon": "💡"
+    }
+  },
+  "content_format": {
+    "include_title": true,
+    "include_description": true,
+    "include_author": true,
+    "include_timestamp": false,
+    "include_category_icon": true,
+    "max_description_length": 150
+  },
+  "positioning": {
+    "strategy": "auto_grid",
+    "spacing": 20,
+    "max_per_row": 3,
+    "group_by_category": true
+  },
+  "tags": {
+    "auto_generate": true,
+    "include_sentiment": true,
+    "include_impact_level": true,
+    "include_theme": true
+  }
+}

@@ -1,0 +1,25 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    networks:
+      - autoideas-network
+
+  worker:
+    build: ./workers
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./workers:/app
+    networks:
+      - autoideas-network
+    restart: unless-stopped
+
+networks:
+  autoideas-network:
+    driver: bridge

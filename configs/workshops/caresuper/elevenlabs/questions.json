@@ -1,0 +1,100 @@
+{
+  "questions": [
+    {
+      "id": "workflow_friction_1",
+      "category": "workflow_friction",
+      "text": "What's a repetitive task you wish you didn't have to do?",
+      "follow_ups": [
+        "How often do you have to do this?",
+        "How much time does it typically take?",
+        "What would you do with that time instead?"
+      ]
+    },
+    {
+      "id": "workflow_friction_2",
+      "category": "workflow_friction",
+      "text": "Where do you feel your time is being wasted during your workday?",
+      "follow_ups": [
+        "Can you give me a specific example?",
+        "Who else is affected by this?",
+        "Have you found any workarounds?"
+      ]
+    },
+    {
+      "id": "workflow_friction_3",
+      "category": "workflow_friction",
+      "text": "What's one thing you often have to chase people or systems for?",
+      "follow_ups": [
+        "How long do these delays typically last?",
+        "What's the impact when you don't get it on time?",
+        "Who usually helps resolve this?"
+      ]
+    },
+    {
+      "id": "member_experience_1",
+      "category": "member_experience",
+      "text": "Where do members get stuck, confused, or frustrated when dealing with us?",
+      "follow_ups": [
+        "How do you usually help them through this?",
+        "How often does this come up?",
+        "What do members say about this issue?"
+      ]
+    },
+    {
+      "id": "member_experience_2",
+      "category": "member_experience",
+      "text": "What could make our service faster or more personalised for members?",
+      "follow_ups": [
+        "What specific member needs are we not meeting?",
+        "Can you share an example where this would help?",
+        "What feedback have members given about this?"
+      ]
+    },
+    {
+      "id": "decision_support_1",
+      "category": "decision_support",
+      "text": "What decisions are hard to make due to lack of data or clarity?",
+      "follow_ups": [
+        "What information would help you make this decision?",
+        "How do you currently work around this gap?",
+        "How often does this situation arise?"
+      ]
+    },
+    {
+      "id": "decision_support_2",
+      "category": "decision_support",
+      "text": "If you could get one new insight instantly about your work, what would it be?",
+      "follow_ups": [
+        "How would this insight change your approach?",
+        "Who else would benefit from this information?",
+        "What decisions would this help you make?"
+      ]
+    },
+    {
+      "id": "wishlist_1",
+      "category": "wishlist",
+      "text": "If you had a smart assistant that understood your role, what would you want it to do for you?",
+      "follow_ups": [
+        "Which of these tasks is most time-consuming?",
+        "How would this change your daily routine?",
+        "What skills would this assistant need?"
+      ]
+    },
+    {
+      "id": "wishlist_2",
+      "category": "wishlist",
+      "text": "If you could change one system or process overnight, what would it be?",
+      "follow_ups": [
+        "What makes the current system problematic?",
+        "Who would benefit most from this change?",
+        "Have you seen this work better elsewhere?"
+      ]
+    }
+  ],
+  "question_flow": {
+    "type": "sequential",
+    "allow_skip": true,
+    "randomize": false,
+    "max_questions_per_session": 5
+  }
+}

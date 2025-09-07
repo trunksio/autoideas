@@ -1,0 +1,57 @@
+{
+  "board_id": "uXjVJLEWVa8=",
+  "board_name": "CareSuper Innovation Workshop - Ideas Board",
+  "board_description": "Collaborative space for capturing and organizing automation opportunities",
+  "layout": {
+    "type": "grid",
+    "columns": 4,
+    "column_width": 400,
+    "row_height": 300
+  },
+  "sections": [
+    {
+      "id": "workflow_friction",
+      "title": "Workflow Friction",
+      "color": "#FF6B6B",
+      "position": {"x": 0, "y": 0},
+      "size": {"width": 400, "height": 800},
+      "description": "Repetitive tasks and time wasters"
+    },
+    {
+      "id": "member_experience",
+      "title": "Member Experience",
+      "color": "#4ECDC4",
+      "position": {"x": 450, "y": 0},
+      "size": {"width": 400, "height": 800},
+      "description": "Member pain points and service improvements"
+    },
+    {
+      "id": "decision_support",
+      "title": "Decision Support",
+      "color": "#45B7D1",
+      "position": {"x": 900, "y": 0},
+      "size": {"width": 400, "height": 800},
+      "description": "Data gaps and insight needs"
+    },
+    {
+      "id": "wishlist",
+      "title": "Future Vision",
+      "color": "#96CEB4",
+      "position": {"x": 1350, "y": 0},
+      "size": {"width": 400, "height": 800},
+      "description": "Wishlist and transformation ideas"
+    }
+  ],
+  "frames": [
+    {
+      "title": "High Impact / Quick Wins",
+      "position": {"x": 0, "y": 900},
+      "size": {"width": 800, "height": 400}
+    },
+    {
+      "title": "Strategic Opportunities",
+      "position": {"x": 900, "y": 900},
+      "size": {"width": 800, "height": 400}
+    }
+  ]
+}
