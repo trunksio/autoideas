@@ -3,35 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoIdeas - Workshop Ideas</title>
+    <title>AutoIdeas Workshop - Equal Experts</title>
+    
+    <!-- Google Fonts - Lexend -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div id="app">
-        <header>
-            <h1>AutoIdeas Workshop</h1>
+        <header class="site-header">
+            <div class="header-container">
+                <div class="logo-section">
+                    <img src="https://www.equalexperts.com/wp-content/uploads/2024/10/2024-Logo.svg" 
+                         alt="Equal Experts" 
+                         class="company-logo">
+                </div>
+                <div class="header-title">
+                    <h1>AutoIdeas Workshop</h1>
+                    <p class="subtitle">Collaborative Innovation Session</p>
+                </div>
+            </div>
         </header>
 
-        <main>
-            <!-- Voice Agent -->
-            <div id="voice-section">
-                <elevenlabs-convai agent-id="agent_9901k4jby1pbf7przmt61zskpkfe"></elevenlabs-convai>
-            </div>
+        <main class="main-content">
+            <div class="container">
+                <div class="workshop-grid">
+                    <!-- Voice Agent Card -->
+                    <div class="card voice-card">
+                        <div class="card-header">
+                            <h2>Voice Assistant</h2>
+                            <p>Share your ideas through conversation</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="instructions-section">
+                                <div class="instructions-intro">
+                                    <h3>How it works</h3>
+                                    <p>This voice-assisted chat agent will capture your ideas and automatically add them as posts to the board. You can:</p>
+                                    <ul>
+                                        <li>Jump to any specific theme</li>
+                                        <li>Work through each theme in turn</li>
+                                        <li>Hang up, have a think, then start again anytime</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="themes-section">
+                                    <h3>Workshop Themes</h3>
+                                    
+                                    <div class="theme-item">
+                                        <h4>Theme 1: Workflow Friction</h4>
+                                        <ol>
+                                            <li>What's a repetitive task you wish you didn't have to do?</li>
+                                            <li>Where do you feel your time is being wasted?</li>
+                                            <li>What's one thing you often have to chase people or systems for?</li>
+                                        </ol>
+                                    </div>
+                                    
+                                    <div class="theme-item">
+                                        <h4>Theme 2: Member Experience</h4>
+                                        <ol>
+                                            <li>Where do members get stuck, confused, or frustrated?</li>
+                                            <li>What could make our service faster or more personalised?</li>
+                                        </ol>
+                                    </div>
+                                    
+                                    <div class="theme-item">
+                                        <h4>Theme 3: Decision Support / Insight Gaps</h4>
+                                        <ol>
+                                            <li>What decisions are hard to make due to lack of data or clarity?</li>
+                                            <li>If you could get one new insight instantly, what would it be?</li>
+                                        </ol>
+                                    </div>
+                                    
+                                    <div class="theme-item">
+                                        <h4>Theme 4: Wishlist / Future Vision</h4>
+                                        <ol>
+                                            <li>If you had a smart assistant that understood your role, what would you want it to do for you?</li>
+                                            <li>If you could change one system or process overnight, what would it be?</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                
+                                <div class="voice-widget-container">
+                                    <elevenlabs-convai agent-id="agent_9901k4jby1pbf7przmt61zskpkfe"></elevenlabs-convai>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- Miro Board -->
-            <div id="miro-section">
-                <iframe
-                    id="miro-board"
-                    width="100%"
-                    height="100%"
-                    src="https://miro.com/app/live-embed/uXjVJLEWVa8=/?moveToViewport=-748,-142,1209,590&embedId=836579481918"
-                    frameborder="0"
-                    scrolling="no"
-                    allow="fullscreen; clipboard-read; clipboard-write"
-                    allowfullscreen>
-                </iframe>
+                    <!-- Miro Board Card -->
+                    <div class="card miro-card">
+                        <div class="card-header">
+                            <h2>Ideas Board</h2>
+                            <p>View and collaborate on collected ideas</p>
+                        </div>
+                        <div class="card-body">
+                            <iframe
+                                id="miro-board"
+                                width="100%"
+                                height="100%"
+                                src="https://miro.com/app/live-embed/uXjVJLEWVa8=/?moveToViewport=-748,-142,1209,590&embedId=836579481918"
+                                frameborder="0"
+                                scrolling="no"
+                                allow="fullscreen; clipboard-read; clipboard-write"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <p>&copy; 2025 Equal Experts. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
     <!-- Scripts -->

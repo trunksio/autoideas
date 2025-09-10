@@ -2,7 +2,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:80"
+      - "3001:80"
     volumes:
       - ./frontend:/usr/share/nginx/html:ro
     networks:
@@ -14,10 +14,13 @@ services:
       - .env
     environment:
       - PYTHONUNBUFFERED=1
+      - REDIS_URL=redis://172.20.0.1:6379
     volumes:
       - ./workers:/app
     networks:
       - autoideas-network
+    extra_hosts:
+      - "host.docker.internal:172.20.0.1"
     restart: unless-stopped
 
 networks:
