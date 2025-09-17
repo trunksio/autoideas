@@ -21,13 +21,17 @@ MIRO_BASE_URL = "https://api.miro.com/v2"
 
 # Theme color mapping - Miro accepts specific color names only
 THEME_COLORS = {
-    "workflow_friction": "red",                      # Red for workflow friction
-    "member_experience": "light_blue",               # Blue for member experience  
-    "decision_support_/_insight_gaps": "yellow",     # Yellow for decision support / insight gaps
-    "decision_support/insight_gaps": "yellow",       # Alternative format
-    "wishlist_/_future_vision": "light_green",       # Green for wishlist / future vision
-    "wishlist/future_vision": "light_green",         # Alternative format
-    "default": "gray"                                # Gray for uncategorized
+    "process_improvement": "red",                                  # Red for process improvement (formerly workflow friction)
+    "member_experience": "light_blue",                            # Blue for member experience
+    "caresuper_people_experience": "yellow",                      # Yellow for CareSuper people experience
+    "information_gaps_and_ai_wishlist": "light_green",           # Green for information gaps and AI wishlist
+    # Alternative formats and variations
+    "process improvement": "red",
+    "caresuper people experience": "yellow",
+    "information gaps and ai wishlist": "light_green",
+    "information_gaps": "light_green",
+    "ai_wishlist": "light_green",
+    "default": "gray"                                            # Gray for uncategorized
 }
 
 # Position tracking (simple grid layout)

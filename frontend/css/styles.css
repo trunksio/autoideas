@@ -221,17 +221,64 @@ p {
 /* Themes Section */
 .themes-section {
     flex: 1;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
+    min-height: 0;
 }
 
 .themes-section h3 {
     color: var(--dark-gray);
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+.scroll-indicator {
+    font-size: 12px;
+    color: var(--primary-blue);
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+    background: linear-gradient(to bottom, var(--white) 0%, rgba(255,255,255,0) 100%);
+    animation: pulse 2s infinite;
+    display: none;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.themes-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 5px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-blue) var(--light-gray);
+}
+
+/* Custom scrollbar for webkit browsers */
+.themes-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.themes-container::-webkit-scrollbar-track {
+    background: var(--light-gray);
+    border-radius: 4px;
+}
+
+.themes-container::-webkit-scrollbar-thumb {
+    background: var(--primary-blue);
+    border-radius: 4px;
+}
+
+.themes-container::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-blue);
 }
 
 .theme-item {
@@ -239,6 +286,7 @@ p {
     border-radius: 6px;
     padding: 15px;
     margin-bottom: 12px;
+    border-left: 3px solid var(--primary-blue);
 }
 
 .theme-item h4 {
@@ -258,6 +306,26 @@ p {
     color: var(--text-gray);
     margin-bottom: 6px;
     line-height: 1.4;
+}
+
+/* Show scroll indicator on mobile and when content overflows */
+@media (max-width: 768px) {
+    .scroll-indicator {
+        display: block;
+    }
+    
+    .themes-container {
+        border: 1px solid rgba(23, 149, 212, 0.2);
+        border-radius: 6px;
+        padding: 10px;
+        background: rgba(248, 251, 253, 0.5);
+        max-height: 300px;
+    }
+    
+    .theme-item {
+        padding: 12px;
+        margin-bottom: 8px;
+    }
 }
 
 /* Voice Widget Container */

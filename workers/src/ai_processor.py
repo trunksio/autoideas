@@ -256,10 +256,18 @@ class AIProcessor:
     def _determine_category(self, question_id: str, question_context: str) -> str:
         """Determine category based on question"""
         categories = {
-            "workflow": "workflow_friction",
+            "process": "process_improvement",
+            "workflow": "process_improvement",
+            "repetitive": "process_improvement",
             "member": "member_experience",
-            "decision": "decision_support",
-            "wish": "wishlist"
+            "service": "member_experience",
+            "caresuper": "caresuper_people_experience",
+            "employee": "caresuper_people_experience",
+            "culture": "caresuper_people_experience",
+            "information": "information_gaps_and_ai_wishlist",
+            "ai": "information_gaps_and_ai_wishlist",
+            "assistant": "information_gaps_and_ai_wishlist",
+            "wish": "information_gaps_and_ai_wishlist"
         }
         
         question_lower = question_context.lower()

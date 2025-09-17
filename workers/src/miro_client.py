@@ -136,11 +136,11 @@ class MiroClient:
             Hex color code
         """
         color_map = {
-            "workflow_friction": "#ff9999",  # Light red
-            "member_experience": "#99ccff",  # Light blue
-            "decision_support": "#ffcc99",   # Light orange
-            "wishlist": "#99ff99",            # Light green
-            "general": "#ffff99"              # Light yellow
+            "process_improvement": "#ff9999",              # Light red (formerly workflow_friction)
+            "member_experience": "#99ccff",                # Light blue
+            "caresuper_people_experience": "#ffcc99",      # Light orange
+            "information_gaps_and_ai_wishlist": "#99ff99", # Light green
+            "general": "#ffff99"                           # Light yellow
         }
         
         return color_map.get(category.lower().replace(" ", "_"), "#f0f0f0")
@@ -157,10 +157,10 @@ class MiroClient:
         """
         # Simple grid layout by category
         category_positions = {
-            "workflow_friction": {"x": 0, "y": 0},
+            "process_improvement": {"x": 0, "y": 0},
             "member_experience": {"x": 300, "y": 0},
-            "decision_support": {"x": 600, "y": 0},
-            "wishlist": {"x": 900, "y": 0},
+            "caresuper_people_experience": {"x": 600, "y": 0},
+            "information_gaps_and_ai_wishlist": {"x": 900, "y": 0},
             "general": {"x": 1200, "y": 0}
         }
         
