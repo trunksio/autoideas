@@ -1,0 +1,408 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1a1a2e;
+    --secondary-color: #16213e;
+    --accent-color: #0f3460;
+    --highlight-color: #e94560;
+    --text-color: #eee;
+    --text-muted: #888;
+    --background-color: #0f0f1a;
+    --card-background: #1a1a2e;
+    --border-color: #2a2a4a;
+    --success-color: #4ade80;
+    --warning-color: #fbbf24;
+}
+
+body {
+    font-family: 'Lexend', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.site-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.company-logo {
+    height: 40px;
+    filter: brightness(0) invert(1);
+}
+
+.header-title h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.header-title .subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* Main Content */
+.main-content {
+    padding: 40px 0;
+}
+
+/* Config Section */
+.config-section {
+    margin-bottom: 30px;
+}
+
+.config-card {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+}
+
+.config-card h3 {
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.form-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.form-group label {
+    font-weight: 500;
+    min-width: 80px;
+}
+
+.form-group input {
+    flex: 1;
+    min-width: 300px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--background-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+}
+
+.config-status {
+    margin-top: 12px;
+    font-size: 0.9rem;
+}
+
+.config-status.success {
+    color: var(--success-color);
+}
+
+.config-status.error {
+    color: var(--highlight-color);
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--highlight-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #d63050;
+}
+
+.btn-secondary {
+    background: var(--accent-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #1a4a80;
+}
+
+/* Stats Section */
+.stats-section {
+    margin-bottom: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--highlight-color);
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* Actions Section */
+.actions-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+/* Sessions Table */
+.sessions-section h2 {
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.table-container {
+    background: var(--card-background);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.sessions-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sessions-table th,
+.sessions-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sessions-table th {
+    background: var(--secondary-color);
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+}
+
+.sessions-table tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.sessions-table tr:last-child td {
+    border-bottom: none;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-badge.completed {
+    background: rgba(74, 222, 128, 0.2);
+    color: var(--success-color);
+}
+
+.status-badge.incomplete {
+    background: rgba(251, 191, 36, 0.2);
+    color: var(--warning-color);
+}
+
+.btn-view {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--card-background);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+    font-weight: 500;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--text-color);
+}
+
+.modal-body {
+    padding: 24px;
+    max-height: calc(90vh - 80px);
+    overflow-y: auto;
+}
+
+/* Answer Cards */
+.answer-card {
+    background: var(--background-color);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+}
+
+.answer-card:last-child {
+    margin-bottom: 0;
+}
+
+.answer-section {
+    font-size: 0.8rem;
+    color: var(--highlight-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.answer-question {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+.answer-text {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.answer-rating {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--highlight-color);
+}
+
+.answer-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+/* Footer */
+.site-footer {
+    background: var(--primary-color);
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+.site-footer p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .form-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-group input {
+        min-width: 100%;
+    }
+
+    .sessions-table th,
+    .sessions-table td {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+}

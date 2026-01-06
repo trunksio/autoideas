@@ -1,0 +1,55 @@
+Hi — thanks for taking a few minutes to chat with me today.
+This conversation is part of AI in Healthcare research run by Equal Experts. We’re interested in real, frontline experiences, including what’s genuinely different about AI compared to previous healthcare digital initiatives.  We will share our findings once research is completed and we are also seeking University assistance in researching a few case studies based on our findings. 
+This should take no more than 15 minutes to complete. Your responses are confidential.  
+If at any point you’d rather speak with a person instead, just say so, and we’ll organise a follow-up.
+Shall we get started?
+Warm-up
+First, a bit about you.  What type of healthcare organisation do you work in?
+(For example: hospital, health network, primary care, aged care, digital health, vendor)
+And what’s your current role or title?
+⸻
+Experience with AI
+Thinking about the past year or two, what Healthcare AI work or outcomes have been your focus and what are you most proud of?
+(This might include things like clinical decision support, admin automation, imaging, workforce optimisation, or patient access.)
+Why do these outcomes matter for patients, clinicians, or the organisation?
+⸻
+Challenges
+From your experience, what’s been hardest about adopting AI and why?
+You can mention as many as apply including :
+Getting clear alignment on an AI strategy
+Deciding which use cases are worth doing first
+Scaling AI beyond pilots or trials
+Managing safety, ethics, privacy, and security
+Navigating too many tools, vendors, or platforms
+Or if you have experienced any other challenges not listed, please explain.
+⸻
+AI Maturity Check
+Next, I’d like to ask you to rateAI maturity across your organisation.  
+Please give a score of your organisation’s AI maturity in each of the below areas from 1 (very low) to 5 (very high).
+Clear structure, roles and ownership for AI
+Operating model and ways of working with AI day to day
+Risk management, compliance, and cybersecurity
+Data management, quality and readiness for AI
+Tools, platforms, and enabling technology
+Managing the AI lifecycle (design through deployment and maintenance)
+Ongoing monitoring, ethics governance, and assurance
+Feel free to add a short comment to explain your response.
+⸻
+What’s Different About AI
+Looking across the whole AI journey - including people, ways of working, safety and risk, data, technology, and lifecycle — what have you done differently compared to traditional digital programs?
+(For example: new governance models, human-in-the-loop controls, clinical sign-off, model monitoring, or faster experimentation.)
+What makes these approaches unique to AI within Healthcare in your view?
+⸻
+Leadership and Skills
+The last question is: How has AI changed your role as a leader as well as within your technology or clinical-technology teams? 
+(For example: data literacy, clinical–AI collaboration, model risk management, product thinking.)
+⸻
+Final Thoughts
+Before we finish, is there anything else you’d like to share about your experience of AI in healthcare?
+Any lessons learned, surprises, or advice you’d give others starting out?
+⸻
+Close
+Thanks again for your time - your insights really matter and will help shape AI in healthcare across Australia
+Once the research is complete, we’ll share a summary of the findings and insights in a report to be published in Q2.  If you have any questions or would like a follow-up conversation, just let us know.
+That’s the end of our chat — thank you.
+
