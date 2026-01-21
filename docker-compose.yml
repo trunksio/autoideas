@@ -1,4 +1,52 @@
 services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - redis_data:/data
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - autoideas-network
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    # No host port binding - only accessible within Docker network
+    environment:
+      POSTGRES_USER: survey
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-survey_dev}
+      POSTGRES_DB: survey
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    networks:
+      - autoideas-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U survey"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: ./api
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgresql://survey:${POSTGRES_PASSWORD:-survey_dev}@postgres:5432/survey
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - autoideas-network
+    restart: unless-stopped
+
   frontend:
     build: ./frontend
     ports:
@@ -14,14 +62,52 @@ services:
       - .env
     environment:
       - PYTHONUNBUFFERED=1
-      - REDIS_URL=redis://172.20.0.1:6379
+      - REDIS_URL=redis://redis:6379
     volumes:
       - ./workers:/app
+    depends_on:
+      - redis
     networks:
       - autoideas-network
-    extra_hosts:
-      - "host.docker.internal:172.20.0.1"
     restart: unless-stopped
+
+  survey-worker:
+    build: ./survey-worker
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgresql://survey:${POSTGRES_PASSWORD:-survey_dev}@postgres:5432/survey
+      - QUEUE_NAME=survey_queue
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - autoideas-network
+    restart: unless-stopped
+
+  survey-admin:
+    build: ./survey-admin
+    ports:
+      - "3004:80"
+    networks:
+      - autoideas-network
+    restart: unless-stopped
+
+  survey-frontend:
+    build: ./survey-frontend
+    ports:
+      - "3005:80"
+    networks:
+      - autoideas-network
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  postgres_data:
 
 networks:
   autoideas-network:

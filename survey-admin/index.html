@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Admin - Healthcare AI Research</title>
+
+    <!-- Google Fonts - Lexend -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="app">
+        <header class="site-header">
+            <div class="header-container">
+                <div class="logo-section">
+                    <img src="https://www.equalexperts.com/wp-content/uploads/2024/10/2024-Logo.svg"
+                         alt="Equal Experts"
+                         class="company-logo">
+                </div>
+                <div class="header-title">
+                    <h1>Survey Admin</h1>
+                    <p class="subtitle">Healthcare AI Research Dashboard</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <!-- Stats Overview -->
+                <div class="stats-section" id="stats-section" style="display:none;">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="total-sessions">-</div>
+                            <div class="stat-label">Total Sessions</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="completed-sessions">-</div>
+                            <div class="stat-label">Completed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="in-progress-sessions">-</div>
+                            <div class="stat-label">Incomplete</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="total-answers">-</div>
+                            <div class="stat-label">Total Answers</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="actions-section" id="actions-section" style="display:none;">
+                    <button id="refresh-btn" class="btn btn-secondary">Refresh Data</button>
+                    <button id="export-csv-btn" class="btn btn-primary">Export CSV</button>
+                    <button id="export-json-btn" class="btn btn-secondary">Export JSON</button>
+                </div>
+
+                <!-- Sessions List -->
+                <div class="sessions-section" id="sessions-section" style="display:none;">
+                    <h2>Survey Sessions</h2>
+                    <div class="table-container">
+                        <table class="sessions-table" id="sessions-table">
+                            <thead>
+                                <tr>
+                                    <th>Conversation ID</th>
+                                    <th>Started</th>
+                                    <th>Status</th>
+                                    <th>Answers</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sessions-tbody">
+                                <!-- Sessions will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Session Detail Modal -->
+                <div class="modal" id="session-modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Session Details</h3>
+                            <button class="modal-close" id="modal-close">&times;</button>
+                        </div>
+                        <div class="modal-body" id="session-detail">
+                            <!-- Session details will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <p>&copy; 2026 Equal Experts. Healthcare AI Research Survey.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

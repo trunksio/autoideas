@@ -1,55 +1,80 @@
-# AutoIdeas - Workshop Ideation Platform
+# AutoIdeas Platform
 
-A voice-driven idea collection system for workshops, powered by ElevenLabs conversational AI and Miro collaborative boards.
+A dual-purpose voice-driven platform for workshop ideation and research surveys, powered by ElevenLabs conversational AI.
 
 ## Overview
 
-AutoIdeas enables organizations to collect, process, and visualize ideas from workshop participants using natural voice conversations. The system automatically processes submissions, clusters similar ideas, and creates visual representations on Miro boards.
+AutoIdeas provides two main applications:
+
+1. **Think Tank** - Collects workshop ideas via voice conversation and visualizes them on Miro boards in real-time
+2. **Healthcare AI Survey** - Conducts structured voice-based research surveys with PostgreSQL persistence and admin dashboard
+
+Both systems use ElevenLabs voice agents for natural conversation and share common infrastructure (Redis queuing, Docker orchestration, Apache reverse proxy).
 
 ## Architecture
 
 ```
-┌─────────────┐     ┌──────────────┐     ┌─────────────┐
-│  Frontend   │────▶│  MCP Server  │────▶│    Redis    │
-│  (JS/HTML)  │     │   (Python)   │     │    Queue    │
-└─────────────┘     └──────────────┘     └─────────────┘
-       │                    │                    │
-       │                    │                    ▼
-       ▼                    ▼            ┌─────────────┐
-┌─────────────┐     ┌──────────────┐     │   Workers   │
-│ ElevenLabs  │     │     SSE      │     │  (Python)   │
-│    Agent    │     │   Events     │     └─────────────┘
-└─────────────┘     └──────────────┘            │
-       │                                         ▼
-       │                                 ┌─────────────┐
-       └────────────────────────────────▶│  Miro API   │
-                                         └─────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              THINK TANK                                      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ┌──────────┐    ┌─────────────┐    ┌───────┐    ┌────────┐    ┌──────────┐│
+│  │ Frontend │───▶│ ElevenLabs  │───▶│  API  │───▶│ Redis  │───▶│  Worker  ││
+│  │ + Miro   │    │ Voice Agent │    │       │    │ Queue  │    │          ││
+│  └──────────┘    └─────────────┘    └───────┘    └────────┘    └────┬─────┘│
+│       ▲                                                              │      │
+│       │                                                              ▼      │
+│       │                                                        ┌──────────┐ │
+│       └────────────────────────────────────────────────────────│ Miro API │ │
+│                                                                └──────────┘ │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           HEALTHCARE AI SURVEY                               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ┌──────────┐    ┌─────────────┐    ┌───────┐    ┌────────┐    ┌──────────┐│
+│  │ Landing  │───▶│ ElevenLabs  │───▶│  API  │───▶│ Redis  │───▶│  Survey  ││
+│  │  Page    │    │ Voice Agent │    │       │    │ Queue  │    │  Worker  ││
+│  └──────────┘    └─────────────┘    └───────┘    └────────┘    └────┬─────┘│
+│                                                                      │      │
+│  ┌──────────┐    ┌─────────────┐                                    ▼      │
+│  │  Admin   │◀───│   Survey    │◀──────────────────────────────┌──────────┐│
+│  │Dashboard │    │     API     │                               │PostgreSQL││
+│  └──────────┘    └─────────────┘                               └──────────┘│
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ## Features
 
+### Think Tank
 - **Voice Collection**: Natural conversation interface via ElevenLabs
-- **Real-time Processing**: Asynchronous idea processing with Redis Queue
-- **Automatic Clustering**: AI-powered grouping of similar ideas
-- **Visual Boards**: Auto-populated Miro boards with categorized ideas
-- **Multi-Workshop Support**: Configurable for different workshops and customers
-- **Live Updates**: Server-Sent Events for real-time status updates
+- **Theme-Based Routing**: Ideas categorized into 4 workshop themes
+- **Real-time Visualization**: Auto-populated Miro boards with color-coded sticky notes
+- **Live Updates**: Server-Sent Events for real-time status
+
+### Healthcare AI Survey
+- **Structured Interviews**: 17 questions across 7 sections
+- **Anonymous Collection**: Track by conversation ID only
+- **Auto-Completion**: Sessions marked complete on final question
+- **Admin Dashboard**: View sessions, answers, and export data
+- **Export Options**: CSV and JSON formats
 
 ## Quick Start
 
 ### Prerequisites
 
 - Docker and Docker Compose
-- ElevenLabs API key
-- Miro API key and board access
-- OpenAI API key (optional, for enhanced processing)
+- ElevenLabs API key and configured agents
+- Miro API key and board access (for Think Tank)
+- Apache with SSL (for production)
 
 ### Setup
 
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd AutoIdeas
+cd autoideas
 ```
 
 2. Create environment file:
@@ -63,23 +88,51 @@ cp .env.example .env
 docker-compose up -d
 ```
 
-4. Access the application:
-- Frontend: http://localhost:3000
-- API: http://localhost:8000
-- API Docs: http://localhost:8000/docs
+4. Access the applications:
+
+| Application | Local URL | Production URL |
+|------------|-----------|----------------|
+| Think Tank UI | http://localhost:3001 | https://apps.equalexperts.ai/thinktank |
+| Survey Landing | http://localhost:3005 | https://apps.equalexperts.ai/survey |
+| Survey Admin | http://localhost:3004 | https://apps.equalexperts.ai/survey/admin |
+| API | http://localhost:8080 | https://apps.equalexperts.ai/thinktank/api |
+
+## Services
+
+| Service | Port | Purpose |
+|---------|------|---------|
+| `redis` | 6379 | Job queue and caching |
+| `postgres` | 5432 (internal) | Survey data persistence |
+| `api` | 8080 | Webhook handler + Survey API |
+| `frontend` | 3001 | Think Tank UI |
+| `worker` | - | Think Tank job processor |
+| `survey-worker` | - | Survey answer processor |
+| `survey-admin` | 3004 | Admin dashboard |
+| `survey-frontend` | 3005 | Survey landing page |
+
+## API Endpoints
+
+### Think Tank Webhooks
+
+| Endpoint | Method | Purpose | Auth |
+|----------|--------|---------|------|
+| `/webhook` | POST | ElevenLabs idea submission | X-API-Key |
+| `/webhook/raw` | POST | Debug endpoint | X-API-Key |
+| `/queue/status` | GET | Check queue status | X-API-Key |
+| `/` | GET | Health check | None |
+
+### Survey API
+
+| Endpoint | Method | Purpose | Auth |
+|----------|--------|---------|------|
+| `/webhook/survey` | POST | ElevenLabs answer submission | X-API-Key |
+| `/survey/sessions` | GET | List all sessions with stats | None* |
+| `/survey/sessions/{id}` | GET | Get session details | None* |
+| `/survey/export` | GET | Export data (CSV/JSON) | None* |
+
+*Admin endpoints protected by Apache Basic Auth in production
 
 ## Configuration
-
-### Workshop Setup
-
-Create a new workshop configuration in `configs/workshops/<workshop-id>/`:
-
-1. **metadata.json** - Workshop details
-2. **elevenlabs/agent_config.json** - Voice agent configuration
-3. **elevenlabs/system_prompt.txt** - Agent personality and guidelines
-4. **elevenlabs/questions.json** - Workshop questions
-5. **miro/board_template.json** - Board layout configuration
-6. **miro/card_template.json** - Card styling rules
 
 ### Environment Variables
 
@@ -87,168 +140,232 @@ Create a new workshop configuration in `configs/workshops/<workshop-id>/`:
 # Redis
 REDIS_URL=redis://redis:6379
 
-# APIs
-ELEVENLABS_API_KEY=your_key_here
-MIRO_API_KEY=your_key_here
-OPENAI_API_KEY=your_key_here  # Optional
+# PostgreSQL
+DATABASE_URL=postgresql://survey:survey_dev@postgres:5432/survey
+POSTGRES_PASSWORD=survey_dev
 
-# Server
-SERVER_HOST=0.0.0.0
-SERVER_PORT=8000
+# API Security
+AUTOIDEAS_API_KEY=your_webhook_api_key
+
+# ElevenLabs
+ELEVENLABS_API_KEY=your_key
+
+# Miro (Think Tank only)
+MIRO_API_KEY=your_key
+MIRO_BOARD_ID=your_board_id
+
+# OpenAI (optional - for enhanced processing)
+OPENAI_API_KEY=your_key
+```
+
+### Workshop Configuration
+
+Each workshop in `/configs/workshops/{workshop-id}/` requires:
+
+```
+workshop-id/
+├── metadata.json           # Workshop details
+├── elevenlabs/
+│   ├── agent_config.json   # Agent settings
+│   ├── system_prompt.txt   # Agent personality
+│   └── questions.json      # Question flow
+└── miro/
+    ├── board_template.json # Board layout
+    └── card_template.json  # Card styling
+```
+
+### ElevenLabs Agent Configuration
+
+**Think Tank Agent ID**: `agent_9901k4jby1pbf7przmt61zskpkfe`
+**Survey Agent ID**: `agent_9001ke7763raes091jpa7tm6ybrg`
+
+See `/survey/elevenlabs-agent-prompt.md` for the survey agent system prompt and `/survey/elevenlabs-tool-config.md` for tool configuration.
+
+## Database Schema
+
+### Survey Tables
+
+```sql
+-- Sessions table
+CREATE TABLE survey_sessions (
+    id UUID PRIMARY KEY,
+    conversation_id VARCHAR(255) UNIQUE NOT NULL,
+    survey_id VARCHAR(100) DEFAULT 'healthcare_ai_2025',
+    started_at TIMESTAMP WITH TIME ZONE,
+    completed_at TIMESTAMP WITH TIME ZONE,
+    metadata JSONB
+);
+
+-- Answers table
+CREATE TABLE survey_answers (
+    id SERIAL PRIMARY KEY,
+    session_id UUID REFERENCES survey_sessions(id),
+    question_id VARCHAR(100) NOT NULL,
+    section_name VARCHAR(100),
+    question_text TEXT,
+    answer_type VARCHAR(50),  -- 'free_text', 'rating', 'multiple_choice'
+    answer_text TEXT,
+    answer_rating INTEGER CHECK (1-5),
+    answer_choices JSONB,
+    raw_transcript TEXT,
+    answered_at TIMESTAMP WITH TIME ZONE,
+    UNIQUE(session_id, question_id)
+);
 ```
 
 ## Development
 
 ### Local Development
 
-1. Install Python dependencies:
 ```bash
-cd mcp-server
-uv pip install -e .
-```
+# Start services
+docker-compose up -d
 
-2. Install worker dependencies:
-```bash
-cd workers
-uv pip install -e .
-```
+# View logs
+docker-compose logs -f api
+docker-compose logs -f worker
+docker-compose logs -f survey-worker
 
-3. Start Redis:
-```bash
-docker run -p 6379:6379 redis:7-alpine
-```
+# Rebuild after changes
+docker-compose build --no-cache <service>
+docker-compose up -d <service>
 
-4. Run services:
-```bash
-# Terminal 1 - MCP Server
-cd mcp-server
-uvicorn src.server:app --reload
-
-# Terminal 2 - Worker
-cd workers
-rq worker autoideas --url redis://localhost:6379
-
-# Terminal 3 - Frontend
-cd frontend
-python -m http.server 3000
-```
-
-### Testing
-
-```bash
-# Run tests
-pytest
-
-# With coverage
-pytest --cov=src --cov-report=html
-```
-
-## API Endpoints
-
-### Core Endpoints
-
-- `GET /` - Health check
-- `GET /workshops` - List available workshops
-- `GET /workshops/{id}` - Get workshop details
-- `POST /voice/message` - Submit voice transcription
-- `GET /sse/events` - Subscribe to real-time events
-- `GET /status` - Server status and statistics
-
-### MCP Tool Endpoints
-
-- `POST /mcp/tools/submit_idea` - Submit idea via MCP protocol
-
-## Deployment
-
-### Production Deployment
-
-1. Update Docker images:
-```bash
-docker-compose build
-```
-
-2. Configure production environment:
-```bash
-cp .env.production .env
-# Update with production values
-```
-
-3. Deploy with scaling:
-```bash
+# Scale workers
 docker-compose up -d --scale worker=4
 ```
 
-### Monitoring
+### Useful Commands
 
-- Redis Commander: http://localhost:8081 (if enabled)
-- Application logs: `docker-compose logs -f`
-- Worker status: `docker exec -it autoideas_worker_1 rq info`
+```bash
+# Check Redis queue
+docker exec -it autoideas-redis-1 redis-cli
+> LLEN miro_card
+> LLEN survey_queue
 
-## Incremental Delivery Plan
+# Check PostgreSQL
+docker exec -it autoideas-postgres-1 psql -U survey -d survey
+> SELECT COUNT(*) FROM survey_sessions;
+> SELECT * FROM survey_answers LIMIT 10;
 
-### Phase 1: Foundation ✅
-- Project structure
-- Docker setup
-- Basic MCP server
-- Redis configuration
-- Worker skeleton
-- Frontend structure
+# Check worker status
+docker exec -it autoideas-worker-1 rq info
+```
 
-### Phase 2: Core Integration (Next)
-- ElevenLabs voice integration
-- Message routing
-- Miro API connection
-- Basic card creation
+## Production Deployment
 
-### Phase 3: Multi-Workshop Support
-- Dynamic configuration
-- Workshop selection UI
-- Prompt management
+### Apache Reverse Proxy
 
-### Phase 4: Enhanced Processing
-- AI clustering
-- Theme generation
-- Deduplication
+The Apache configuration (`/apache/apps.equalexperts.ai-le-ssl.conf`) routes:
 
-### Phase 5: Production Ready
-- Authentication
-- Monitoring
-- Admin interface
-- Performance optimization
+| Path | Destination | Auth |
+|------|-------------|------|
+| `/thinktank/api` | localhost:8080 | X-API-Key |
+| `/thinktank` | localhost:3001 | Basic Auth |
+| `/survey/api` | localhost:8080 | X-API-Key |
+| `/survey/admin` | localhost:3004 | Basic Auth |
+| `/survey` | localhost:3005 | None (public) |
+| `/awdio/*` | localhost:8002/3003 | OAuth/JWT |
+
+### Deploy Steps
+
+```bash
+# Build images
+docker-compose build
+
+# Deploy
+docker-compose up -d
+
+# Copy Apache config
+sudo cp apache/apps.equalexperts.ai-le-ssl.conf /etc/apache2/sites-available/
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+```
+
+### Authentication
+
+- **Think Tank UI**: HTTP Basic Auth (`.htpasswd-thinktank`)
+- **Survey Admin**: HTTP Basic Auth (`.htpasswd-survey`)
+- **Webhooks**: X-API-Key header validation
+- **Survey Landing**: Public (no auth)
+
+## Project Structure
+
+```
+autoideas/
+├── api/                    # FastAPI webhook handler + Survey API
+│   └── src/main.py
+├── workers/                # Think Tank job processor
+│   └── src/
+│       ├── worker.py
+│       ├── triage_agent.py
+│       ├── miro_client.py
+│       └── ai_processor.py
+├── survey-worker/          # Survey answer processor
+│   └── src/
+│       ├── worker.py
+│       └── survey_processor.py
+├── frontend/               # Think Tank UI
+│   ├── index.html
+│   └── css/styles.css
+├── survey-frontend/        # Survey landing page
+│   ├── index.html
+│   └── css/styles.css
+├── survey-admin/           # Admin dashboard
+│   ├── index.html
+│   ├── js/app.js
+│   └── css/styles.css
+├── db/init/                # PostgreSQL schema
+├── configs/workshops/      # Workshop configurations
+├── apache/                 # Reverse proxy config
+├── survey/                 # ElevenLabs documentation
+│   ├── elevenlabs-agent-prompt.md
+│   └── elevenlabs-tool-config.md
+├── docker-compose.yml
+├── EEStyle.md              # Brand guidelines
+└── CLAUDE.md               # Developer guidelines
+```
 
 ## Troubleshooting
 
 ### Common Issues
 
 1. **Voice agent not loading**
-   - Check ElevenLabs API key
-   - Verify agent configuration
+   - Check ElevenLabs agent ID in HTML
+   - Verify browser microphone permissions
    - Check browser console for errors
 
-2. **Ideas not appearing on board**
-   - Verify Miro API key
-   - Check board permissions
-   - Review worker logs
+2. **Ideas not appearing on Miro**
+   - Verify `MIRO_API_KEY` and `MIRO_BOARD_ID`
+   - Check worker logs: `docker-compose logs worker`
+   - Verify board permissions in Miro
 
-3. **Connection issues**
-   - Ensure Redis is running
-   - Check Docker network
-   - Verify port availability
+3. **Survey answers not saving**
+   - Check `DATABASE_URL` in environment
+   - Verify PostgreSQL is healthy: `docker-compose logs postgres`
+   - Check survey-worker logs: `docker-compose logs survey-worker`
 
-## Contributing
+4. **Webhook errors (401/422)**
+   - Verify `X-API-Key` header matches `AUTOIDEAS_API_KEY`
+   - Check payload format matches expected schema
+   - Review API logs: `docker-compose logs api`
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+5. **CSS/assets returning 403**
+   - Rebuild container: `docker-compose build --no-cache <service>`
+   - Check file permissions in Dockerfile (755 for dirs, 644 for files)
 
-## License
+## Brand Guidelines
 
-[Your License Here]
+The survey applications follow Equal Experts brand guidelines (see `EEStyle.md`):
+
+- **Primary Color**: EE Blue `#1795D4`
+- **Headings**: Tech Blue `#22567C`
+- **Body Text**: Dark Data `#212526`
+- **Accent/CTA**: Ember `#F07C00`
+- **Background**: Cloud `#F5F5F5`
+- **Font**: Lexend (300/400/500/700 weights)
 
 ## Support
 
 For issues and questions:
-- GitHub Issues: [repository-issues-url]
-- Documentation: [docs-url]
+- Contact: matthew.waugh@equalexperts.com
+- GitHub Issues: https://github.com/trunksio/autoideas/issues

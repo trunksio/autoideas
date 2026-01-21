@@ -79,3 +79,4 @@ Each workshop requires:
 - Redis data persists in volume; clear with `docker-compose down -v` if needed
 - Frontend auto-reloads; backend requires container restart for code changes
 - MCP server handles SSE connections; ensure proper CORS configuration
+- **ALWAYS backup config files before modifying them** - especially Apache configs at `/etc/apache2/sites-available/`. Use timestamped backups: `sudo cp file file.bak.$(date +%Y%m%d-%H%M%S)`
