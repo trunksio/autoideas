@@ -21,13 +21,13 @@ MIRO_BASE_URL = "https://api.miro.com/v2"
 
 # Theme color mapping - Miro accepts specific color names only
 THEME_COLORS = {
-    "process_improvement": "red",                                  # Red for process improvement (formerly workflow friction)
+    "process_improvement": "red",                                  # Red for process improvement
     "member_experience": "light_blue",                            # Blue for member experience
-    "caresuper_people_experience": "yellow",                      # Yellow for CareSuper people experience
+    "team_experience": "yellow",                                  # Yellow for team experience
     "information_gaps_and_ai_wishlist": "light_green",           # Green for information gaps and AI wishlist
     # Alternative formats and variations
     "process improvement": "red",
-    "caresuper people experience": "yellow",
+    "team experience": "yellow",
     "information gaps and ai wishlist": "light_green",
     "information_gaps": "light_green",
     "ai_wishlist": "light_green",
