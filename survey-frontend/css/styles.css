@@ -294,6 +294,24 @@ body {
     padding-left: 24px;
 }
 
+.form-alternative {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--ee-cloud);
+    text-align: center;
+}
+
+.form-alternative p {
+    font-size: 14px;
+    color: var(--ee-tech-blue);
+}
+
+.form-alternative a {
+    color: var(--ee-blue);
+    text-decoration: underline;
+    font-weight: var(--font-medium);
+}
+
 /* Info Section */
 .info-section {
     display: grid;

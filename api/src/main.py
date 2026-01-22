@@ -491,3 +491,80 @@ async def export_survey_data(
     except Exception as e:
         logger.error(f"Error exporting survey data: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# =============================================================================
+# Survey Form Submission (Web Form Alternative)
+# =============================================================================
+
+class FormAnswer(BaseModel):
+    """Single answer from the web form."""
+    question_id: str
+    section_name: str
+    question_text: str
+    answer_type: str
+    answer_text: Optional[str] = None
+    answer_rating: Optional[int] = None
+
+
+class FormSubmission(BaseModel):
+    """Complete form submission payload."""
+    session_id: str
+    answers: List[FormAnswer]
+
+
+@app.post("/survey/form")
+async def submit_survey_form(submission: FormSubmission):
+    """
+    Submit a complete survey form (all answers at once).
+
+    This endpoint is for the web form alternative to voice survey.
+    No API key required as it's a public form submission.
+    """
+    try:
+        logger.info(f"Received form submission: session={submission.session_id}, answers={len(submission.answers)}")
+
+        conn = get_db_connection()
+        try:
+            with conn.cursor() as cur:
+                # Create session
+                cur.execute("""
+                    INSERT INTO survey_sessions (conversation_id, survey_id, started_at, completed_at)
+                    VALUES (%s, %s, NOW(), NOW())
+                    RETURNING id
+                """, (submission.session_id, "healthcare_ai_2025"))
+                session_result = cur.fetchone()
+                session_uuid = session_result["id"]
+
+                # Insert all answers
+                for answer in submission.answers:
+                    cur.execute("""
+                        INSERT INTO survey_answers
+                            (session_id, question_id, section_name, question_text,
+                             answer_type, answer_text, answer_rating, answered_at)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, NOW())
+                    """, (
+                        session_uuid,
+                        answer.question_id,
+                        answer.section_name,
+                        answer.question_text,
+                        answer.answer_type,
+                        answer.answer_text,
+                        answer.answer_rating
+                    ))
+
+                conn.commit()
+                logger.info(f"Form submission stored: session={submission.session_id}, {len(submission.answers)} answers")
+
+                return {
+                    "success": True,
+                    "session_id": submission.session_id,
+                    "answers_recorded": len(submission.answers),
+                    "message": "Survey submitted successfully"
+                }
+        finally:
+            conn.close()
+
+    except Exception as e:
+        logger.error(f"Error processing form submission: {e}")
+        raise HTTPException(status_code=500, detail=str(e))

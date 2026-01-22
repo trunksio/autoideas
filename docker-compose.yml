@@ -105,6 +105,14 @@ services:
       - autoideas-network
     restart: unless-stopped
 
+  survey-form:
+    build: ./survey-form
+    ports:
+      - "3006:80"
+    networks:
+      - autoideas-network
+    restart: unless-stopped
+
 volumes:
   redis_data:
   postgres_data:
