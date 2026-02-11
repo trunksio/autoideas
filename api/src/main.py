@@ -14,6 +14,7 @@ import csv
 import io
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from redis import Redis
 from rq import Queue
@@ -37,6 +38,15 @@ app = FastAPI(
     title="AutoIdeas API",
     description="Webhook API for ElevenLabs to submit jobs to RQ",
     version="0.1.0",
+)
+
+# Add CORS middleware for direct container access (no reverse proxy)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, restrict to specific origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Redis connection (lazy initialization)
