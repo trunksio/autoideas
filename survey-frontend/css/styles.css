@@ -264,16 +264,6 @@ body {
     font-weight: var(--font-bold);
 }
 
-.voice-widget-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 0;
-    min-height: 120px;
-    background: var(--ee-cloud);
-    border-radius: var(--radius-md);
-}
-
 .voice-tips {
     background: var(--ee-cloud);
     padding: 16px;
@@ -292,6 +282,24 @@ body {
     color: var(--ee-dark);
     padding: 4px 0;
     padding-left: 24px;
+}
+
+.form-alternative {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--ee-cloud);
+    text-align: center;
+}
+
+.form-alternative p {
+    font-size: 14px;
+    color: var(--ee-tech-blue);
+}
+
+.form-alternative a {
+    color: var(--ee-blue);
+    text-decoration: underline;
+    font-weight: var(--font-medium);
 }
 
 /* Info Section */

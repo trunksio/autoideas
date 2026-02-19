@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare AI Research Survey - Written Form</title>
+
+    <!-- Google Fonts - Lexend -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="app">
+        <header class="site-header">
+            <div class="header-container">
+                <div class="logo-section">
+                    <img src="https://www.equalexperts.com/wp-content/uploads/2024/10/2024-Logo.svg"
+                         alt="Equal Experts"
+                         class="company-logo">
+                </div>
+                <div class="header-title">
+                    <h1>Healthcare AI Research</h1>
+                    <p class="subtitle">Written Survey Form</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <!-- Introduction -->
+                <div class="intro-section">
+                    <h2>About This Survey</h2>
+                    <p>We're gathering insights from healthcare leaders about their real, frontline experiences with AI - including what's genuinely different about AI compared to previous healthcare digital initiatives.</p>
+                    <div class="survey-info">
+                        <span class="info-item"><strong>Duration:</strong> ~15 minutes</span>
+                        <span class="info-item"><strong>Responses:</strong> Anonymous</span>
+                        <span class="info-item"><strong>Results:</strong> Q2 2026</span>
+                    </div>
+                    <p class="alt-option">Prefer to speak? <a href="/survey">Use our voice survey instead</a></p>
+                </div>
+
+                <!-- Survey Form -->
+                <form id="survey-form" class="survey-form">
+                    <!-- Section 1: Warm-up -->
+                    <section class="form-section">
+                        <div class="section-header">
+                            <span class="section-number">1</span>
+                            <h3>About You</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="warmup_org_type">What type of healthcare organisation do you work in?</label>
+                            <p class="field-hint">For example: hospital, health network, primary care, aged care, digital health, or vendor</p>
+                            <input type="text" id="warmup_org_type" name="warmup_org_type" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="warmup_role">What's your current role or title?</label>
+                            <input type="text" id="warmup_role" name="warmup_role" required>
+                        </div>
+                    </section>
+
+                    <!-- Section 2: Experience with AI -->
+                    <section class="form-section">
+                        <div class="section-header">
+                            <span class="section-number">2</span>
+                            <h3>Experience with AI</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience_focus">Thinking about the past year or two, what Healthcare AI work or outcomes have been your focus, and what are you most proud of?</label>
+                            <p class="field-hint">This might include things like clinical decision support, admin automation, imaging, workforce optimisation, or patient access</p>
+                            <textarea id="experience_focus" name="experience_focus" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience_why_matters">Why do these outcomes matter - for patients, clinicians, or the organisation?</label>
+                            <textarea id="experience_why_matters" name="experience_why_matters" rows="4" required></textarea>
+                        </div>
+                    </section>
+
+                    <!-- Section 3: Challenges -->
+                    <section class="form-section">
+                        <div class="section-header">
+                            <span class="section-number">3</span>
+                            <h3>Challenges</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="challenges_hardest">From your experience, what's been hardest about adopting AI, and why?</label>
+                            <p class="field-hint">You can mention things like: getting clear alignment on an AI strategy, deciding which use cases to prioritise, scaling beyond pilots, managing safety and ethics, or navigating too many tools and vendors</p>
+                            <textarea id="challenges_hardest" name="challenges_hardest" rows="5" required></textarea>
+                        </div>
+                    </section>
+
+                    <!-- Section 4: AI Maturity Check -->
+                    <section class="form-section">
+                        <div class="section-header">
+                            <span class="section-number">4</span>
+                            <h3>AI Maturity Check</h3>
+                        </div>
+                        <p class="section-intro">Please rate your organisation's AI maturity across the following areas, from 1 (very low) to 5 (very high). Feel free to add comments to explain your ratings.</p>
+
+                        <div class="form-group rating-group">
+                            <label>Clear structure, roles and ownership for AI</label>
+                            <div class="rating-input">
+                                <div class="rating-scale">
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_structure" value="1" required>
+                                        <span>1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_structure" value="2">
+                                        <span>2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_structure" value="3">
+                                        <span>3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_structure" value="4">
+                                        <span>4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_structure" value="5">
+                                        <span>5</span>
+                                    </label>
+                                </div>
+                                <div class="rating-labels">
+                                    <span>Very Low</span>
+                                    <span>Very High</span>
+                                </div>
+                            </div>
+                            <input type="text" name="maturity_structure_comment" placeholder="Optional comment..." class="rating-comment">
+                        </div>
+
+                        <div class="form-group rating-group">
+                            <label>Operating model and ways of working with AI day to day</label>
+                            <div class="rating-input">
+                                <div class="rating-scale">
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_operating_model" value="1" required>
+                                        <span>1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_operating_model" value="2">
+                                        <span>2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_operating_model" value="3">
+                                        <span>3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_operating_model" value="4">
+                                        <span>4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_operating_model" value="5">
+                                        <span>5</span>
+                                    </label>
+                                </div>
+                                <div class="rating-labels">
+                                    <span>Very Low</span>
+                                    <span>Very High</span>
+                                </div>
+                            </div>
+                            <input type="text" name="maturity_operating_model_comment" placeholder="Optional comment..." class="rating-comment">
+                        </div>
+
+                        <div class="form-group rating-group">
+                            <label>Risk management, compliance, and cybersecurity</label>
+                            <div class="rating-input">
+                                <div class="rating-scale">
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_risk" value="1" required>
+                                        <span>1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_risk" value="2">
+                                        <span>2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_risk" value="3">
+                                        <span>3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_risk" value="4">
+                                        <span>4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_risk" value="5">
+                                        <span>5</span>
+                                    </label>
+                                </div>
+                                <div class="rating-labels">
+                                    <span>Very Low</span>
+                                    <span>Very High</span>
+                                </div>
+                            </div>
+                            <input type="text" name="maturity_risk_comment" placeholder="Optional comment..." class="rating-comment">
+                        </div>
+
+                        <div class="form-group rating-group">
+                            <label>Data management, quality and readiness for AI</label>
+                            <div class="rating-input">
+                                <div class="rating-scale">
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_data" value="1" required>
+                                        <span>1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_data" value="2">
+                                        <span>2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_data" value="3">
+                                        <span>3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_data" value="4">
+                                        <span>4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_data" value="5">
+                                        <span>5</span>
+                                    </label>
+                                </div>
+                                <div class="rating-labels">
+                                    <span>Very Low</span>
+                                    <span>Very High</span>
+                                </div>
+                            </div>
+                            <input type="text" name="maturity_data_comment" placeholder="Optional comment..." class="rating-comment">
+                        </div>
+
+                        <div class="form-group rating-group">
+                            <label>Tools, platforms, and enabling technology</label>
+                            <div class="rating-input">
+                                <div class="rating-scale">
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_tools" value="1" required>
+                                        <span>1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_tools" value="2">
+                                        <span>2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_tools" value="3">
+                                        <span>3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_tools" value="4">
+                                        <span>4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_tools" value="5">
+                                        <span>5</span>
+                                    </label>
+                                </div>
+                                <div class="rating-labels">
+                                    <span>Very Low</span>
+                                    <span>Very High</span>
+                                </div>
+                            </div>
+                            <input type="text" name="maturity_tools_comment" placeholder="Optional comment..." class="rating-comment">
+                        </div>
+
+                        <div class="form-group rating-group">
+                            <label>Managing the AI lifecycle - from design through deployment and maintenance</label>
+                            <div class="rating-input">
+                                <div class="rating-scale">
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_lifecycle" value="1" required>
+                                        <span>1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_lifecycle" value="2">
+                                        <span>2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_lifecycle" value="3">
+                                        <span>3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_lifecycle" value="4">
+                                        <span>4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_lifecycle" value="5">
+                                        <span>5</span>
+                                    </label>
+                                </div>
+                                <div class="rating-labels">
+                                    <span>Very Low</span>
+                                    <span>Very High</span>
+                                </div>
+                            </div>
+                            <input type="text" name="maturity_lifecycle_comment" placeholder="Optional comment..." class="rating-comment">
+                        </div>
+
+                        <div class="form-group rating-group">
+                            <label>Ongoing monitoring, ethics governance, and assurance</label>
+                            <div class="rating-input">
+                                <div class="rating-scale">
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_governance" value="1" required>
+                                        <span>1</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_governance" value="2">
+                                        <span>2</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_governance" value="3">
+                                        <span>3</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_governance" value="4">
+                                        <span>4</span>
+                                    </label>
+                                    <label class="rating-option">
+                                        <input type="radio" name="maturity_governance" value="5">
+                                        <span>5</span>
+                                    </label>
+                                </div>
+                                <div class="rating-labels">
+                                    <span>Very Low</span>
+                                    <span>Very High</span>
+                                </div>
+                            </div>
+                            <input type="text" name="maturity_governance_comment" placeholder="Optional comment..." class="rating-comment">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="maturity_comments">Any additional comments about your organisation's AI maturity? (Optional)</label>
+                            <textarea id="maturity_comments" name="maturity_comments" rows="3"></textarea>
+                        </div>
+                    </section>
+
+                    <!-- Section 5: What's Different About AI -->
+                    <section class="form-section">
+                        <div class="section-header">
+                            <span class="section-number">5</span>
+                            <h3>What's Different About AI</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="different_approaches">Looking across the whole AI journey - including people, ways of working, safety and risk, data, technology, and lifecycle - what have you done differently compared to traditional digital programs?</label>
+                            <p class="field-hint">For example: new governance models, human-in-the-loop controls, clinical sign-off, model monitoring, or faster experimentation</p>
+                            <textarea id="different_approaches" name="different_approaches" rows="5" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="different_unique">What makes these approaches unique to AI within Healthcare, in your view?</label>
+                            <textarea id="different_unique" name="different_unique" rows="4" required></textarea>
+                        </div>
+                    </section>
+
+                    <!-- Section 6: Leadership and Skills -->
+                    <section class="form-section">
+                        <div class="section-header">
+                            <span class="section-number">6</span>
+                            <h3>Leadership and Skills</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="leadership_changes">How has AI changed your role as a leader, as well as the skills needed within your technology or clinical-technology teams?</label>
+                            <p class="field-hint">For example: data literacy, clinical-AI collaboration, model risk management, or product thinking</p>
+                            <textarea id="leadership_changes" name="leadership_changes" rows="5" required></textarea>
+                        </div>
+                    </section>
+
+                    <!-- Section 7: Final Thoughts -->
+                    <section class="form-section">
+                        <div class="section-header">
+                            <span class="section-number">7</span>
+                            <h3>Final Thoughts</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="final_thoughts">Is there anything else you'd like to share about your experience of AI in healthcare?</label>
+                            <p class="field-hint">Any lessons learned, surprises, or advice you'd give others starting out</p>
+                            <textarea id="final_thoughts" name="final_thoughts" rows="5"></textarea>
+                        </div>
+                    </section>
+
+                    <!-- Submit -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submit-btn">
+                            <span class="btn-text">Submit Survey</span>
+                            <span class="btn-loading" style="display: none;">Submitting...</span>
+                        </button>
+                        <p class="submit-note">Your responses are anonymous and will be used for research purposes only.</p>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div id="success-message" class="success-message" style="display: none;">
+                    <div class="success-icon">&#10003;</div>
+                    <h2>Thank You!</h2>
+                    <p>Your responses have been submitted successfully.</p>
+                    <p>Your insights will help shape AI in healthcare across Australia. We'll publish a summary of findings in Q2 2026.</p>
+                    <div class="success-actions">
+                        <a href="https://eu1.hubs.ly/H0r3VlR0" target="_blank" class="btn btn-secondary">Learn more about our healthcare work</a>
+                        <a href="/survey" class="btn btn-outline">Return to survey home</a>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error-message" class="error-message" style="display: none;">
+                    <h3>Submission Error</h3>
+                    <p id="error-text">There was an error submitting your survey. Please try again.</p>
+                    <button class="btn btn-secondary" onclick="document.getElementById('error-message').style.display='none';">Dismiss</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <p>&copy; 2026 Equal Experts. Healthcare AI Research Survey.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
